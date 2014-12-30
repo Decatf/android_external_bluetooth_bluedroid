@@ -1392,7 +1392,9 @@ static void btif_media_task_aa_handle_timer(void)
     APPL_TRACE_DEBUG("btif_media_task_aa_handle_timer: %d", Debug++);
 #endif
 
+#if 0
     log_tstamps_us("media task tx timer");
+#endif
 
 #if (BTA_AV_INCLUDED == TRUE)
     if(btif_media_cb.is_tx_timer == TRUE)
