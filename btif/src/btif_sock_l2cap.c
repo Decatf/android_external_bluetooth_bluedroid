@@ -1070,7 +1070,9 @@ bt_status_t btsock_l2c_set_sockopt(int psm, btsock_option_type_t option_name,
 {
     int status = BT_STATUS_FAIL;
 
+#if 0
     APPL_TRACE_ERROR("btsock_l2c_get_sockopt channel is %d ", psm);
+#endif
     if((psm < 1) || (option_value == NULL) || (option_len <= 0)
                      || (option_len > (int)sizeof(int)))
     {
@@ -1087,9 +1089,10 @@ bt_status_t btsock_l2c_set_sockopt(int psm, btsock_option_type_t option_name,
        }
        ls->put_size = (*((UINT32 *)option_value));
        ls->put_size_set = TRUE;
+#if 0
         APPL_TRACE_ERROR(" channel:%d or option_value:%p, option_len:%d ls->put_size %d",
                                         psm, option_value, option_len, ls->put_size);
-
+#endif
         status = BT_STATUS_SUCCESS;
     }
 
