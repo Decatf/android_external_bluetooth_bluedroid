@@ -1212,8 +1212,8 @@ static int adev_open_output_stream(struct audio_hw_device *dev, uint32_t devices
 #else
     UNUSED(devices);
     UNUSED(format);
-    UNUSED(channels);
-    UNUSED(sample_rate);
+    // UNUSED(channels);
+    // UNUSED(sample_rate);
 #endif
 
     perf_systrace_enabled();
@@ -1226,9 +1226,15 @@ static int adev_open_output_stream(struct audio_hw_device *dev, uint32_t devices
     if (!out)
         return -ENOMEM;
 
+#ifndef ICS_AUDIO_BLOB
     ALOGD("%s: enter: sample_rate(%d) channel_mask(%#x) devices(%#x) flags(%#x)\
         stream_handle(%p)",__func__, config->sample_rate, config->channel_mask,
         devices, flags, &out->stream);
+#else
+    ALOGD("%s: enter: sample_rate(%d) channel_mask(%#x) devices(%#x) \
+        stream_handle(%p)",__func__, *sample_rate, *channels,
+        devices, &out->stream);
+#endif
 
     if (audio_sample_log_enabled) {
         strncpy(local_filename, btoutputfilename, sizeof(btoutputfilename));
